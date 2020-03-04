@@ -1,0 +1,34 @@
+setup:
+  build: false
+  commit: master
+  image: danielbok/nida-python:3.7.6
+
+# global environment variables. If value can be interpreted as a boolean or int,
+# they should ideally be quoted to prevent any possible errors. Even if values
+# are strings, there is no harm in quoting them
+environment:
+  key1: key1
+  key2: key2
+
+steps:
+  # elements in steps are executed in order with the name representing the step name
+  # step names must be unique. For each task within the step, their names must be unique.
+  # however, the name need not be unique across steps. Thus, you could have Step1:Fn1
+  # and Step2:Fn1. Even though the function names are both Fn1, since they belong to
+  # different steps, it is okay
+  - name: Extraction
+    tasks:
+      # This task should fail and should exit the task
+      - name: Task to fail
+        cmd: fail.py
+
+      - name: Success task
+        cmd: okay.py
+
+      - name: No exit code task
+          cmd: no_code.py
+
+  - name: Never reached this step
+    tasks:
+      - name: Multiply numeric data in cars by 2
+        cmd: never_reached.py
