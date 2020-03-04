@@ -26,7 +26,7 @@ steps:
         cmd: okay.py
 
       - name: No exit code task
-          cmd: no_code.py
+        cmd: no_code.py
 
   - name: Never reached this step
     tasks:
